@@ -37,13 +37,11 @@ export default class Canvas extends Component {
 
   render() {
     const { width, height } = this.props;
-    const { base64 } = this.state;
     
     return (
       <div>
         <video ref='video' width={width} height={height} />
         <canvas ref='canvas' width={width} height={height} />
-        <div>{base64}</div>
       </div>
     );
   }
