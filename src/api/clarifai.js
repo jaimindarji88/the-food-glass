@@ -3,15 +3,13 @@
 
 const Clarifai = require('clarifai');
 
-const clarifaiTemp = async function(){
+const ClarifaiAPI = async function(picture){
     const app = new Clarifai.App({
         apiKey: 'bca7d7576a33432bb12f40bb975465e5'
     });
     // using the "Food" model
-    
-    const processData = await app.models.predict("bd367be194cf45149e75f01d59f77ba7", "https://samples.clarifai.com/food.jpg").then(
+    const processData = await app.models.predict("bd367be194cf45149e75f01d59f77ba7", {base64: picture}).then(
         function(response) {
-            //console.log(response);
             var args = response.outputs[0].data.concepts;
             var newList = []
             args.forEach(function(element) {
@@ -23,8 +21,7 @@ const clarifaiTemp = async function(){
             return err;
         }
     );
-    //console.log(a)
     return processData;
 }
 
-export default clarifaiTemp;
+export default ClarifaiAPI;
